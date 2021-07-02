@@ -28,7 +28,7 @@ This idea come out when I start to prepare my iOS interview question. In this op
 
 - [Design Pattern](https://github.com/tsaihong1995/InterviewQuestion#design-patterns)
     - [What is Singleton Pattern?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-singleton-pattern)
-    - [What is the delegation pattern? How would you explain delegates to a new Swift developer?]()
+    - [What is the delegation pattern? How would you explain delegates to a new Swift developer?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-the-delegation-pattern)
     - [What is MVC?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-mvc)
     - [What is MVVM?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-mvvm)
 
@@ -435,9 +435,63 @@ There are some steps that I will attemp.
 
 The Singleton design pattern ensures that only one instance exists for a given class and that there’s a global access point to that instance. It usually uses lazy loading to create the single instance when it’s needed the first time. ([source](https://medium.com/ios-os-x-development/ios-interview-questions-13840247a57a))
 
-### What is the delegation pattern? 
+### What is the delegation pattern? How would you explain delegates to a new Swift developer? 
 
-The delegation pattern is a powerful pattern used in building iOS applications. The basic idea is that one object will act on another object's behalf or in coordination with another object. The delegating object typically keeps a reference to the other object (delegate) and sends a message to it at the appropriate time. It is important to note that they have a one to one relationship.
+The delegation pattern is a powerful pattern used in building iOS applications. The basic idea is like the *delegate* the mission/task to the worker. One object will act on another object's behalf or in coordination with another object.
+
+In this scenario, the 'PizzaStore' in charge of assigning task to worker, and 'PizzaStore' delegate making the pizza dough to 'Worker'. Once worker done then give the baked pizza to manager, so PizzaStore can get the pizza.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+struct Pizza {
+    var size:Int = 15
+}
+
+protocol PizzaStoreDelegate {
+    func pizzaWasBaked(_ pizza: Pizza)
+}
+
+class PizzaStore
+{
+    var delegate:PizzaStoreDelegate?
+
+    func makePizza()
+    {
+        var pizza = Pizza()
+        pizza.size = 6
+
+        delegate?.pizzaWasBaked(pizza)
+    }
+}
+
+class Worker: PizzaStoreDelegate
+{
+    func pizzaWasBaked(_ pizza: Pizza) {
+        print("The worker start produce the pizza")
+        print("The pizza has baked by worker")
+    }
+}
+
+let worker = Worker()
+
+let pizzaStore = PizzaStore()
+
+pizzaStore.delegate = worker
+pizzaStore.makePizza()
+
+/*
+ Output:
+ The worker start produce the pizza
+ The pizza has baked by worker
+ */
+
+```
+
+
+
+
 
 ### What is MVC?
 
