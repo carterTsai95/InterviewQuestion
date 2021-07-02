@@ -23,8 +23,8 @@ This idea come out when I start to prepare my iOS interview question. In this op
     - [How do you debug and profile code on iOS application?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-debug-and-profile-code-on-ios-application)
 	- [How do you optimize scrolling performance of dynamically sized table or collection views?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-optimize-scrolling-performance-of-dynamically-sized-table-or-collection-views)
 	- Explain your process for tracing and fixing memory leaks.
-	- You’ve just been alerted that your new app is prone to crashing. What do you do?
-	- How do you test your code? How do you make your code testable?
+	- [You’ve just been alerted that your new app is prone to crashing. What do you do?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#youve-just-been-alerted-that-your-new-app-is-prone-to-crashing-what-do-you-do)
+	- How do you test your code? How do you make your code testable? (Todo)
 
 - [Design Pattern](https://github.com/tsaihong1995/InterviewQuestion#design-patterns)
     - [What is Singleton Pattern?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-singleton-pattern)
