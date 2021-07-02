@@ -24,7 +24,6 @@ This idea come out when I start to prepare my iOS interview question. In this op
 	- [How do you optimize scrolling performance of dynamically sized table or collection views?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-optimize-scrolling-performance-of-dynamically-sized-table-or-collection-views)
 	- Explain your process for tracing and fixing memory leaks.
 	- You’ve just been alerted that your new app is prone to crashing. What do you do?
-	- How do you optimize scrolling performance of dynamically sized table or collection views?
 	- How do you test your code? How do you make your code testable?
 
 - [Design Pattern](https://github.com/tsaihong1995/InterviewQuestion#design-patterns)
@@ -50,7 +49,7 @@ This idea come out when I start to prepare my iOS interview question. In this op
     - [What is a retain cycle?](https://github.com/tsaihong1995/InterviewQuestion#what-is-a-retain-cycle)
     - [What is the difference between copy and retain?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-copy-and-retain)
     - [What is the difference between a stack vs a heap?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-a-stack-vs-a-heap)
-    - What are “strong” and “weak” references? Why are they important and how can they be used to help control memory management and avoid memory leaks?
+    - [What are “strong” and “weak” references? Why are they important and how can they be used to help control memory management and avoid memory leaks?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-are-strong-and-weak-references-why-are-they-important-and-how-can-they-be-used-to-help-control-memory-management-and-avoid-memory-leaks)
 
 - [Thread Management](https://github.com/tsaihong1995/InterviewQuestion#thread-management)
     - [What is the difference between synchronous and asynchronous task?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-synchronous-and-asynchronous-task)
