@@ -27,10 +27,10 @@ This idea come out when I start to prepare my iOS interview question. In this op
 	- How do you test your code? How do you make your code testable?
 
 - [Design Pattern](https://github.com/tsaihong1995/InterviewQuestion#design-patterns)
-    - What is Singleton Pattern?
-    - What is the delegation pattern? How would you explain delegates to a new Swift developer?
-    - What is MVC?
-    - What is MVVM?
+    - [What is Singleton Pattern?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-singleton-pattern)
+    - [What is the delegation pattern? How would you explain delegates to a new Swift developer?]()
+    - [What is MVC?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-mvc)
+    - [What is MVVM?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-mvvm)
 
 - [General / Uncategorized](https://github.com/tsaihong1995/InterviewQuestion#general--uncategorized)
 
@@ -54,20 +54,7 @@ This idea come out when I start to prepare my iOS interview question. In this op
 - [Thread Management](https://github.com/tsaihong1995/InterviewQuestion#thread-management)
     - [What is the difference between synchronous and asynchronous task?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-synchronous-and-asynchronous-task)
     - [What is GCD and how is it used?](https://github.com/tsaihong1995/InterviewQuestion#what-is-gcd-and-how-is-it-used)
-- [Unit Testing / UI Testing](https://github.com/onthecodepath/iOS-Interview-Questions#unit-testing--ui-testing)
-    - How familiar are you with XCTest? Have you ever created UI test?
-	- How
-- [View / Storyboard](https://github.com/onthecodepath/iOS-Interview-Questions#view--storyboard)
-    - What is the difference between viewDidLoad and viewDidAppear? Which should you use to load data from a remote server to display in the view?
-    - What is the difference between frame and bound of a UIView?
-    - What is the reuseIdentifier for?
-    - What is autolayout?
 
-- [Contributing](https://github.com/onthecodepath/iOS-Interview-Questions#contributing)
-
-- [Thank You](https://github.com/onthecodepath/iOS-Interview-Questions#thank-you)
-- [Flashcards](https://quizlet.com/serg_tsogtbaatar/folders/ios-interviews/sets)
-    - The interview questions as flash card sets according to topic.
 
 # Interview Questions & Answers
 
