@@ -1,6 +1,6 @@
 # iOS Developer Interview Preparation
 
-## What is this for?
+## Purpose of this open source
 
 This idea come out when I start to prepare my iOS interview question. In this open source repository, I am trying to gather the related iOS interview question as much as I can. Then, I will use my own word to define/answer those of the question in order to examine my knowledge.
 
@@ -72,7 +72,7 @@ This idea come out when I start to prepare my iOS interview question. In this op
 
 ## Swift Fundemantal Knowledge
 
-#### What are struct and class in iOS? What is the difference? When would you use each?
+### What are struct and class in iOS? What is the difference? When would you use each?
 
 The common parts between struct and class:
  - Both can define properties and functions in classes/structs
@@ -167,12 +167,12 @@ print(person2)
 
 
 
-#### What is framework in iOS?
+### What is framework in iOS?
 
 The framework in iOS is like the container with the various resources (images, data files, UI objects, etc.) Framework also can be library or containing many libraries, collection of scripts.
 
 
-#### How can you store information within your iOS app?
+### How can you store information within your iOS app?
 
 There are many different ways that we can achieve data persistence in Swift
 - **UserDefault**
@@ -193,10 +193,63 @@ We can also encode the data to the JSON file then save it to the user's local de
 Core Data is Apple's persistency framework which based on an object graph. It can uss for saving the app's permanet data for offline use or cache the data.
 - **SQLite**
 
-#### How do you cast between types?
+### How do you cast between types?
+
+> Apple - A constant or variable of a certain class type may actually refer to an instance of a subclass behind the scenes. Where you believe this is the case, you can try to downcast to the subclass type with a type cast operator (as? or as!).
+
+Downcasting can be done in two ways:
+- Conditional downcasting (as?).
+- Forced downcasting (as!)
+
+Conditional Downcasting
+While using the conditional downcasting, it will always return an optional value. That's mean when the downcasting is not available, it will always return _nil_.
+
+Forced Downcasting
+When we use the Forced Downcasting, we need to make sure that the downcast will always succeed. Otherwise, it will occure runtime error if we try to downcast to an unvailable class type.
+
+Upcasting can lets the base class object to cast to its superclass.
+
+```swift
+class PizzaStore {
+    var establish :Int?
+    
+    init(establish:Int?) {
+        if let establish = establish {
+            self.establish = establish
+        }
+    }
+}
+
+class Dominos: PizzaStore {
+    var name: String?
+    
+    init(name:String?, establish:Int?) {
+        if let name = name {
+        self.name = name
+        }
+        super.init(establish: establish ?? 0)
+    }
+}
+
+class PizzaHut: PizzaStore {
+    var hasApplePie: Bool?
+    
+    init(hasApplePie:Bool?, establish:Int?) {
+        if let hasApplePie = hasApplePie {
+            self.hasApplePie = hasApplePie
+        }
+        super.init(establish: establish ?? 0)
+    }
+}
+
+let pizzaStoreArray = [Dominos(name: "Domino's", establish: 1960), PizzaHut(hasApplePie: false, establish: 1958)]
+
+let dominoPizzaStore = pizzaStoreArray[0] as! Dominos
+let dominoPizzaStoreAsPizzaStore = dominoPizzaStore as PizzaStore
+```
 
 
-#### What is the difference between var and let?
+### What is the difference between var and let?
 
 The **let** keyword defines a constant which means the property that we don't want it to change their value.
 
@@ -350,19 +403,32 @@ NSFetchRequest is the class responsible for fetching from Core Data. Fetch reque
 
 ## Debugging
 
-#### How do you debug and profile code on iOS application?
-#### How do you optimize scrolling performance of dynamically sized table or collection views?
-#### Explain your process for tracing and fixing memory leaks.
-#### You’ve just been alerted that your new app is prone to crashing. What do you do?
-#### How do you optimize scrolling performance of dynamically sized table or collection views?
-#### How do you test your code? How do you make your code testable?
+### How do you debug and profile code on iOS application?
+- Using NSLog and print functions can be used for output into console.
+- Set the breakpoints and using the Debug bar and Variables view to monitor the object or class.
+- Some Senior Developer will use the Crash Logs to gain more information and try to find out the specific problem.
+
+### How do you optimize scrolling performance of dynamically sized table or collection views?
+
+Firstly, I will analyze which element or reason cause the choppy loading while using the collection views. Most of the time it is because we load the data (Image, text, object) synchronously.
+
+Imangine this scenario in the restaurant. In the restarant there are 3 chief but only have one server. The customer order the bunch of the dishes (Just like user scrolling down the collection view). Sometime the kitchen (backend) might able to handle this big volume, but we only open one thread to serve our content which is data.
+
+So we might can do following strategies to improve the performence. 
+- **Splitting out the long-running operations and move them to a background thread.**
+This allows us to handle any events when they happen, on the main thread. When the background operation completes, you can make any required UI updates, based on the operation, on the main thread.
+- **Loading the data asynchronously **
+We can use Grand Central Dispatch (GCD) to execute tasks concurrently. The main idea is to create a closure to handle how the cell is updated once the data is loaded.
+- **Prefetching the data**
+The problem occur while we fetch big amount of the data. But we also can try to prefethching the oncoming data. For example, the view only present the data 1-10, meanwhile we let our program already fetch the next 11-20 and 21-30 items. Whenever the user scroll down, we continually fetching the oncoming data.
+
+### Explain your process for tracing and fixing memory leaks.
+
+### You’ve just been alerted that your new app is prone to crashing. What do you do?
 
 
-#### What are some ways of debugging in iOS?
+### How do you test your code? How do you make your code testable?
 
-- NSLog and print functions can be used for output into console.
-- Breakpoints can also be used together with the Debug bar and Variables view as an alternative.
-- Senior devs often use other tools such as Instruments and Crash Logs instead of the two above.
 
 ## Design Patterns
 
@@ -393,36 +459,19 @@ A common occurence in MVC is where you have a massive-view-controller (some joke
 
 ## General / Uncategorized
 
-#### What considerations do you need when writing a UITableViewController which shows images downloaded from a remote server?
+### What considerations do you need when writing a UITableViewController which shows images downloaded from a remote server?
 
 - Only download the image when the cell is scrolled into view (when cellForRowAtIndexPath is called)
 - Download the image asynchronously on a background thread so as not to block the UI so the user can keep scrolling
 - When the image has downloaded for a cell, check if that cell is still in the view or whether it has been re-used by another piece of data. If the cell has been re-used, then the image should be discarded. Otherwise, it should be switched back to the main thread to change the image on the cell. ([source](https://www.codementor.io/mattgoldspink/ios-interview-tips-questions-answers-objective-c-du1088nfb))
 
-#### What is a protocol? How do you define your own protocol? 
+### What is a protocol? How do you define your own protocol? 
 
 A protocol defines a list of required and optional methods for a class that adopts the protocol to implement. Any class is allowed to implement a protocol so that other classes can send message to it based on the protocol methods without knowing the type of class. An example of how a protocol is defined:
 
-<details open>
-<summary>Objective-C</summary>
-    
-```objective-c
-@protocol MyCustomDataSource
-- (NSUInteger)numberOfRecords;
-- (NSDictionary *)recordAtIndex:(NSUInteger)index;
-@optional
-- (NSString *)titleForRecordAtIndex:(NSUInteger)index;
-@end
-```
-</details>
-
 A common instance protocols are used is providing a DataSource for UITableView or UICollectionView ([source](https://www.codementor.io/mattgoldspink/ios-interview-tips-questions-answers-objective-c-du1088nfb))
 
-#### What is the difference between a class and an object?
-
-In the simplest sense, a class is a blueprint for an object. It describes the properties and behaviors common to any particular type of object. An object, on the other hand, is an instance of a class.
-
-#### What is JSON? What are the pros and cons?
+### What is JSON? What are the pros and cons?
 
 JSON stands for JavaScript Object Notation. According to [wiki](https://en.wikipedia.org/wiki/JSON), it is a file format that uses human-readable text to transmite data objects consisting of attribute-value pairs and array data types. 
 
@@ -437,7 +486,7 @@ Cons:
 - Data is not readily streamable and has to be broken up into individual objects
 - Can't use comments
 
-#### What is the difference between not-running, inactive, active, background and suspended execution states?
+### What is the difference between not-running, inactive, active, background and suspended execution states?
 
 - **Not-running state** occurs when the app either has not be launched or was running but was terminated by the system.
 - **Inactive state** occurs where the app runs in the foreground but is currently not receiving events. (It may be executing other code though). This state is typically brief as apps transitions to other states.
@@ -445,24 +494,24 @@ Cons:
 - **Background state** occurs when the app is in the background and executing code. Apps typically enter this state on their way to being suspended. Apps that require extra execution time may remain in this screen longer. Apps being launched directly into the background enters this state instead of inactive state.
 - **Suspended state** is where the app is in the background but it is not executing code. Apps will remain in memory, but are removed by the system if low-memory condition occurs in order to make more space for foreground apps.
 
-#### Is it faster to iterate through an NSArray or an NSSet?
+### Is it faster to iterate through an NSArray or an NSSet?
 
 It depends. NSSet is faster to iterate through if the order of the items in the collection is not important. The reason is because NSSet uses hash values in order to find items while NSArray has to iterate through its entire contents to find a particular object. ([source - #25](https://medium.com/cocoaacademymag/25-ios-interview-questions-and-answers-for-junior-developers-19bfe6e99b0))
 
-#### What is KVO?
+### What is KVO?
 
 KVO stands for *Key-Value Observing*. It allows a controller or class to *observe* when a property value changes. 
 
 ## Memory Management
 
-#### Why do you generally create a weak reference when using self in a block?
+### Why do you generally create a weak reference when using self in a block?
 
 Sometimes it is necessary it capture self in a block such as when defining a callback block. However, since blocks maintain strong references to any captured objects including self, this may lead to a strong reference cycle and memory leak.
 
-Instead, capturing a weak reference to self is recommended in order to avoid this issue:
+Instead, capturing a weak reference to self is recommended in order to avoid this issue
 
 
-#### What is memory management handled on iOS?
+### What is memory management handled on iOS?
 
 iOS uses something called ARC which stands for Automatic Reference Counting. When an object is said to have a strong reference to it, ARC increase its retain count by 1. When the retain count of an object reaches 0, the object will typically be deallocated if there are no more strong references to it. Unlike garbage collection, ARC does not handle reference cycles automatically. 
 
@@ -470,7 +519,7 @@ iOS uses something called ARC which stands for Automatic Reference Counting. Whe
 
 Automatic Reference Counting (ARC) provides automatic memory management for all Objective-C object. Developer no need to manually reain and release operations.
 
-#### What is the difference between *weak* and *strong*?
+### What is the difference between *weak* and *strong*?
 
 First, objects are *strong* by default.
 
@@ -479,21 +528,21 @@ First, objects are *strong* by default.
 
 Common instances of ***weak*** references are delegate properties and subview/controls of a view controller's main view since those views are already strongly held by the main view. ([source](http://stackoverflow.com/questions/11013587/differences-between-strong-and-weak-in-objective-c))
 
-#### What is a memory leak?
+### What is a memory leak?
 
 A memory leak commonly occurs when an object is allocated in such a way that when it is no longer in use or needed, it is not released. In iOS programming, you create certain objects with weak references in order to avoid a strong to strong relationship that creates a retain cycle and a memory leak.
 
-#### What is a retain cycle?
+### What is a retain cycle?
 
 Retain cycles can occur when memory management is based on retain count. This typically occurs when two objects strongly reference each other. As a result, the retain count of either object will never reach zero and deallocated from memory (hence retaining each other). 
 
-#### What is the difference between *copy* and *retain*?
+### What is the difference between *copy* and *retain*?
 
 Calling *retain* on an object will increase its *retain* count by one. When the *retain* count of an objective reaches 0, the object will be deallocated and released from memory.
 
 When you *retain* an object, you share the same version with whoever passed the object to you. But when you *copy* an object, you do not share the same version of the object that was passed to you. Instead, a duplicate of that object is created with duplicated values.
 
-#### What is the difference between a stack vs a heap?
+### What is the difference between a stack vs a heap?
 
 A stack is a region of memory where data is added or removed in a last-in-first-out (LIFO) order. According to [Ates Goral](http://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap), it is the memory set aside as scratch space for a thread of execution. Meanwhile the heap is memory set aside for dynamic allocation. Unlike the stack, you can allocate a block at any time and free it at anytime. 
 
@@ -502,11 +551,11 @@ Note: In Objective-C, all objects are always allocated on the heap, or at least 
 
 ## Thread Management
 
-#### What is the difference between synchronous and asynchronous task?
+### What is the difference between synchronous and asynchronous task?
 
 Synchronous tasks wait until the task has been completed while asynchronous tasks can run in the background and send a notification when the task is complete.
 
-#### What is the difference between *atomic* and *non-atomic* synthesized properties?
+### What is the difference between *atomic* and *non-atomic* synthesized properties?
 
 First, properties are set to *atomic* by default. 
 
@@ -514,7 +563,7 @@ First, properties are set to *atomic* by default.
 
 *Non-atomic* properties, however are not thread-safe. While they run faster, they may cause race conditions. In the event that accessor methods are called simultaneously and a race condition occurs, a setter value would first release the old value and a getter method would retrieve nil since no value has not been set yet.
 
-#### What is GCD and how is it used?
+### What is GCD and how is it used?
 
 GCD stands for Grand Central Dispatch. According to [Ray Wenderlich](https://www.raywenderlich.com/60749/grand-central-dispatch-in-depth-part-1), it offers the following benefits
 - Improving your app's responsiveness by helping to defer computationally expensive tasks and run them in the background.
@@ -526,12 +575,19 @@ In other words, GCD provides and manages queues of tasks in the iOS app. This is
 
 ## Unit Testing / UI Testing
 
-#### What is the purpose of Unit/UI testing? What are the benefits?
+### What is the purpose of Unit/UI testing? What are the benefits?
 
 Unit/UI testing are the basic of test-driven development. This development approach allows you to codify requirements for your code before you implement it. Unit tests are important to make sure that code meets its design and requirements and behaves as expected. Parts of the program are segregated and tested to ensure that individual parts are working correctly. 
 
 # Algorithm Resources
 
 #### [swift-algorithm-club](https://github.com/raywenderlich/swift-algorithm-club): Algorithm and data structures in Swift
+
+
+
+
+
+
+
 
 
