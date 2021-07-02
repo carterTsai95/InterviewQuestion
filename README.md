@@ -6,52 +6,55 @@ This idea come out when I start to prepare my iOS interview question. In this op
 
 ## Table of Contents
 
-- [Swift Fundemantal Knowledge](https://github.com/onthecodepath/iOS-Interview-Questions#database)
+- [Swift Fundemantal Knowledge](https://github.com/tsaihong1995/InterviewQuestion#swift-fundemantal-knowledge)
 
     - What are struct and class in iOS? What is the difference? When would you use each?
     - What is framework in iOS?
     - How can you store information within your iOS app?
-	- How do you cast between types?
+    - How do you cast between types?
     - What is the difference between var and let?
     - What is the difference between implicit and explicit?
-	- Tell me about enum in Swift language. Can you give useful examples of enum associated values?
+    - [Tell me about enum in Swift language. Can you give useful examples of enum associated values?](https://github.com/tsaihong1995/InterviewQuestion#tell-me-about-enum-in-swift-language-can-you-give-useful-examples-of-enum-associated-values)
+    - [What is Core Data?](https://github.com/tsaihong1995/InterviewQuestion#what-is-core-data)
+    - [When would you use Core Data over NSUserDefault?](https://github.com/tsaihong1995/InterviewQuestion#when-would-you-use-core-data-over-nsuserdefault)
+    - [What is NSFetchRequest?](https://github.com/tsaihong1995/InterviewQuestion#what-is-nsfetchrequest)
 
-- [Debugging & Optimization](https://github.com/onthecodepath/iOS-Interview-Questions#debugging)
-    - How do you debug and profile code on iOS application?
-	- How do you optimize scrolling performance of dynamically sized table or collection views?
+- [Debugging & Optimization](https://github.com/tsaihong1995/InterviewQuestion#debugging)
+    - [How do you debug and profile code on iOS application?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-debug-and-profile-code-on-ios-application)
+	- [How do you optimize scrolling performance of dynamically sized table or collection views?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-optimize-scrolling-performance-of-dynamically-sized-table-or-collection-views)
 	- Explain your process for tracing and fixing memory leaks.
 	- You’ve just been alerted that your new app is prone to crashing. What do you do?
 	- How do you optimize scrolling performance of dynamically sized table or collection views?
 	- How do you test your code? How do you make your code testable?
 
-- [Design Pattern](https://github.com/onthecodepath/iOS-Interview-Questions#design-patterns)
+- [Design Pattern](https://github.com/tsaihong1995/InterviewQuestion#design-patterns)
     - What is Singleton Pattern?
     - What is the delegation pattern? How would you explain delegates to a new Swift developer?
     - What is MVC?
     - What is MVVM?
 
-- [General / Uncategorized](https://github.com/onthecodepath/iOS-Interview-Questions#general--uncategorized)
+- [General / Uncategorized](https://github.com/tsaihong1995/InterviewQuestion#general--uncategorized)
 
-    - What is a protocol? How do you define your own protocol? 
-    - What is the difference between a class and an object?
-    - What is JSON? What are the pros and cons?
-    - What is the difference between not-running, inactive, active, background and suspended execution states?
-    - What is KVO?
-	- What is NSFetchRequest?
+    - [What is a protocol? How do you define your own protocol?](https://github.com/tsaihong1995/InterviewQuestion#what-is-a-protocol-how-do-you-define-your-own-protocol)
+    - [What is the difference between a class and an object?](https://github.com/tsaihong1995/InterviewQuestion#what-is-json-what-are-the-pros-and-cons)
+    - [What is JSON? What are the pros and cons?](https://github.com/tsaihong1995/InterviewQuestion#what-is-json-what-are-the-pros-and-cons)
+    - [What is the difference between not-running, inactive, active, background and suspended execution states?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-not-running-inactive-active-background-and-suspended-execution-states)
+    - [What is KVO?](https://github.com/tsaihong1995/InterviewQuestion#what-is-kvo)
+	- [What is NSFetchRequest?](https://github.com/tsaihong1995/InterviewQuestion#what-is-nsfetchrequest)
 
-- [Memory Management](https://github.com/onthecodepath/iOS-Interview-Questions#memory-management)
-    - Why do you generally create a weak reference when using self in a block?
-    - What is memory management handled on iOS?
-    - What is the difference between *weak* and *strong*?
-    - What is a memory leak?
-    - What is a retain cycle?
-	- What are “strong” and “weak” references? Why are they important and how can they be used to help control memory management and avoid memory leaks?
-    - What is the difference between copy and retain?
-    - What is the difference between a stack vs a heap?
+- [Memory Management](https://github.com/tsaihong1995/InterviewQuestion#memory-management)
+    - [Why do you generally create a weak reference when using self in a block?](https://github.com/tsaihong1995/InterviewQuestion#why-do-you-generally-create-a-weak-reference-when-using-self-in-a-block)
+    - [What is memory management handled on iOS?](https://github.com/tsaihong1995/InterviewQuestion#what-is-memory-management-handled-on-ios)
+    - [What is the difference between *weak* and *strong*?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-weak-and-strong)
+    - [What is a memory leak?](https://github.com/tsaihong1995/InterviewQuestion#what-is-a-memory-leak)
+    - [What is a retain cycle?](https://github.com/tsaihong1995/InterviewQuestion#what-is-a-retain-cycle)
+    - [What is the difference between copy and retain?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-copy-and-retain)
+    - [What is the difference between a stack vs a heap?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-a-stack-vs-a-heap)
+    - What are “strong” and “weak” references? Why are they important and how can they be used to help control memory management and avoid memory leaks?
 
-- [Thread Management](https://github.com/onthecodepath/iOS-Interview-Questions#thread-management)
-    - What is the difference between synchronous and asynchronous task?
-    - What is GCD and how is it used?
+- [Thread Management](https://github.com/tsaihong1995/InterviewQuestion#thread-management)
+    - [What is the difference between synchronous and asynchronous task?](https://github.com/tsaihong1995/InterviewQuestion#what-is-the-difference-between-synchronous-and-asynchronous-task)
+    - [What is GCD and how is it used?](https://github.com/tsaihong1995/InterviewQuestion#what-is-gcd-and-how-is-it-used)
 - [Unit Testing / UI Testing](https://github.com/onthecodepath/iOS-Interview-Questions#unit-testing--ui-testing)
     - How familiar are you with XCTest? Have you ever created UI test?
 	- How
@@ -555,13 +558,6 @@ Note: In Objective-C, all objects are always allocated on the heap, or at least 
 
 Synchronous tasks wait until the task has been completed while asynchronous tasks can run in the background and send a notification when the task is complete.
 
-### What is the difference between *atomic* and *non-atomic* synthesized properties?
-
-First, properties are set to *atomic* by default. 
-
-*Atomic* properties are more likely to guarentee thread-safety because it will ensure that a value is fully set (by the setter method) or fully retrieved (by the getter method) when accessor methods are called simultaneously.
-
-*Non-atomic* properties, however are not thread-safe. While they run faster, they may cause race conditions. In the event that accessor methods are called simultaneously and a race condition occurs, a setter value would first release the old value and a getter method would retrieve nil since no value has not been set yet.
 
 ### What is GCD and how is it used?
 
