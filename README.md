@@ -415,7 +415,10 @@ The problem occur while we fetch big amount of the data. But we also can try to 
 
 ### You’ve just been alerted that your new app is prone to crashing. What do you do?
 
-
+There are some steps that I will attemp.
+- If the user willing to sent their device model, iOS version it will be a big help. Try to indicate whether certain model or version of iOS cause this crashing.
+- If it is possible, try to reproduce the error and using different simulator to find out the issue.
+- If it's possible, request the user to provide the detail of which action cause the crashing/error.
 
 
 ## Design Patterns
