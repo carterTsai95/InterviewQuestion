@@ -430,7 +430,6 @@ The problem occur while we fetch big amount of the data. But we also can try to 
 ### You’ve just been alerted that your new app is prone to crashing. What do you do?
 
 
-### How do you test your code? How do you make your code testable?
 
 
 ## Design Patterns
@@ -550,6 +549,14 @@ When you *retain* an object, you share the same version with whoever passed the 
 A stack is a region of memory where data is added or removed in a last-in-first-out (LIFO) order. According to [Ates Goral](http://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap), it is the memory set aside as scratch space for a thread of execution. Meanwhile the heap is memory set aside for dynamic allocation. Unlike the stack, you can allocate a block at any time and free it at anytime. 
 
 Note: In Objective-C, all objects are always allocated on the heap, or at least should be treated as if on the heap. 
+
+### What are “strong” and “weak” references? Why are they important and how can they be used to help control memory management and avoid memory leaks?
+
+When developer create the objects the default references is set as *strong*, and this will prevents the ARC(Automatic Reference Count) from removing the object from memory. If we don't deinitialized the object while we are not using, this will cause the memory leak. Upon time, the application might occur the error which is run out of the memory.
+
+So the *weak* reference is to slove this issue, when we create a weak reference we are pointing to an object without increasing reference count.
+
+Common instances of ***weak*** references are delegate properties and subview/controls of a view controller's main view since those views are already strongly held by the main view. ([source](http://stackoverflow.com/questions/11013587/differences-between-strong-and-weak-in-objective-c))
 
 
 ## Thread Management
