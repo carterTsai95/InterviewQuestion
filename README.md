@@ -1,8 +1,12 @@
 # iOS Developer Interview Preparation
 
-## Purpose of this open source
+## Purpose of this
 
-This idea come out when I start to prepare my iOS interview question. In this open source repository, I am trying to gather the related iOS interview question as much as I can. Then, I will use my own word to define/answer those of the question in order to examine my knowledge.
+This idea come out when I start to prepare my iOS interview question. In this open source repository, I am trying to gather the related iOS interview question as much as I can. Then, I will use my own word to define/answer those of the question in order to examine my knowledge. I also recommend some book or resouce that I have read to prepare my interview, and I list below.
+- 100 Questions and Answers to Help You Land Your Dream iOS Job: Or to Hire the Right Candidate! 
+- [Top 50 Swift Interview Questions](https://www.softwaretestinghelp.com/swift-interview-questions/)
+- [Swift Interview Questions and Answers - Raywenderlich](https://www.raywenderlich.com/762435-swift-interview-questions-and-answers)
+- [Hacking with the Swift - Over 150 iOS interview questions](https://www.hackingwithswift.com/interview-questions)
 
 ## Table of Contents
 
