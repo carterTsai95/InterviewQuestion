@@ -221,6 +221,119 @@ In the first line above, the name variable is *explicitly* declared since the ty
 
 #### Tell me about enum in Swift language. Can you give useful examples of enum associated values?
 
+An enumeration (enum) is value type in a type-safe way. It is not mandotary to provide the initial value for the enumeration.
+
+Here’s an example for the four main points of a compass:
+
+```swift
+enum Direction {
+    case north
+    case south
+    case east
+    case west
+}
+```
+
+ > Note: Swift enums don’t have integer values set by default. In example above north, south, east, west don’t implicitly equal 0 ,1 ,2 ,3. Instead these enumeration cases are values in their own right of type _Direction_.
+
+**Important**: A swich statement must be exhaustive if we want to use the enumeration in it. If we use the _default_, it is not nessasary to include all the cases.
+
+```swift
+let someAnimal = Animal.human
+switch somePlanet {
+case .human:
+    print("This is human species")
+default:
+    print("The animal is other than human")
+//It is no need to include all the cases in the Animal enumeration.
+}
+// Prints "The animal is other than human"
+```
+
+- Associate values lets us add more information to our enumeration.
+
+The scenario is "In my SwiftUI application, I want to present different views modal, when I selected the certain button." In this case, we can use the enum associate value helps us to tackle down this problem.
+
+Requirement:
+1. We have 3 different view we want to provide to user to select
+-  Home View
+-  Favorite View
+- Setting View
+
+Step 1. Let us define the MyOption which will contain those three views
+
+```swift
+
+//We want to present the implicitly our each view name, so we need to conform to String and CaseIterable.
+
+enum UserOption: String,  CaseIterable {
+	case setting = "Setting View"
+	case action1 = "Action 1"
+	case action1 = "Action 2"
+}
+```
+Step 2. Let's wrap the UserOption enum into the other enum because we will use the function to determine which case user is selected and generate the corresponding view.
+
+```swift
+enum OtherViews {
+    enum UserOption: String,  CaseIterable {
+        case setting = "Setting View"
+        case action1 = "Action 1"
+        case action2 = "Action 2"
+    }
+    
+    static func optionView(optionSelected: UserOption) -> AnyView {
+        switch optionSelected {
+        case .setting:
+            return AnyView(Text("Showing Setting View"))
+        case .action1:
+            return AnyView(Text("Showing Action1 View"))
+        case .action2:
+            return AnyView(Text("Showing Action2 View"))
+        }
+    
+    }
+}
+```
+
+Step 3. Let create our view to include those fucntionality.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isShowingModal = false
+    @State private var optionSelected: OtherViews.UserOption = .action1
+    var body: some View {
+        VStack {
+            Picker(selection: $optionSelected, label: Text("")) {
+                
+                ForEach(OtherViews.UserOption.allCases, id: \.self) { option in
+                    Text(option.rawValue.capitalized).tag(option)
+                    
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            Button("Show Modal") {
+                self.isShowingModal.toggle()
+            }
+            .sheet(isPresented: $isShowingModal) {
+                OtherViews.optionView(optionSelected: optionSelected)
+            }
+        }
+        .padding()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+    
+}
+```
+
+
+
 #### What is Core Data?
 
 Core Data is a framework that is used to manage model layer objects (Like the M in MVC). It has the ability to persist object graphs to a persistent store. Data is organized into relational entity-attribute model.
@@ -410,144 +523,15 @@ GCD stands for Grand Central Dispatch. According to [Ray Wenderlich](https://www
 
 In other words, GCD provides and manages queues of tasks in the iOS app. This is one of the most commonly used API to manage concurrent code and execute operations asynchronously. Network calls are often performed on a background thread while things like UI updates are executed on the main thread.
 
-#### Explain the difference between Serial vs Concurrent
-
-Tasks executed *serially* are executed one at a time while tasks that are executed *concurrently* may be executed at the same time.
-
-#### Spot the bug that occurs in the code:
-
-<details open>
-<summary>Swift</summary>
-
-```swift
-class ViewController: UIViewController {
-    @IBOutlet var alert: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let frame: CGRect = CGRect(x: 100, y: 100, width: 100, height: 50)
-        self.alert = UILabel(frame: frame)
-        self.alert.text = "Please wait..."
-        self.view.addSubview(self.alert)
-    }
-    DispatchQueue.global(qos: .default).async {
-        sleep(10)
-        self.alert.text = "Waiting over"
-    }
-}
-```
-</details>
-
-<details>
-<summary>Objective-C</summary>
-
-```objective-c
-@interface MyCustomController : UIViewController  
-@property (strong, nonatomic) UILabel *alert;  
-@end  
-
-@implementation MyCustomController  
-
-- (void)viewDidLoad {
-  CGRect frame = CGRectMake(100, 100, 100, 50);
-  self.alert = [[UILabel alloc] initWithFrame:frame];
-  self.alert.text = @"Please wait...";
-  [self.view addSubview:self.alert];
-  dispatch_async(
-    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-    ^{
-      sleep(10);
-      self.alert.text = @"Waiting over";
-    }
-  ); 
-}  
-```
-</details>
-<br>
-
-All UI updates must be performed on the main thread. Global dispatch queues do not make any guarantees so code should be modified to run the UI update on the main thread. Here is the fix below:
-
-
-<details open>
-<summary>Swift</summary>
-
-```swift
-DispatchQueue.global(qos: .default).async {
-    sleep(10)
-    DispatchQueue.main.async {
-        self.alert.text = "Waiting over"
-    }
-}
-```
-</details>
-
-<details>
-<summary>Objective-C</summary>
-    
-```
-dispatch_async(		
-dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-^{
-    sleep(10);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.alert.text = @"Waiting over";
-    });
-}); 
-
-```
-</details>
 
 ## Unit Testing / UI Testing
 
-#### What is the purpose of unit/UI testing? What are the benefits?
+#### What is the purpose of Unit/UI testing? What are the benefits?
 
 Unit/UI testing are the basic of test-driven development. This development approach allows you to codify requirements for your code before you implement it. Unit tests are important to make sure that code meets its design and requirements and behaves as expected. Parts of the program are segregated and tested to ensure that individual parts are working correctly. 
-
-## View / Storyboard
-
-#### What is the difference between viewDidLoad and viewDidAppear? Which should you use to load data from a remote server to display in the view?
-
-viewDidLoad is only called when the view is loaded (after loadView is called). viewDidAppear, on the other hand, is called everytime the view appears on the device. 
-
-If the data is static for the most part, it can be loaded in viewDidLoad and cached. But if the data is dynamic and likely to change often, it is preferrable to use viewDidAppear. In both instances, data should be loaded asynchronously on a background thread to avoid blocking the UI.
-
-#### What is the difference between frame and bound of a UIView?
-
-The *frame* of a UIView is the region relative to the superview it is contained within while the *bounds* of a UIView is the region relative to its own coordinate system.
-
-#### What is the reuseIdentifier for?
-
-The *reuseIdentifier* indicates that cells for a UITableView (or UICollectionView) can be reused. UITableView maintains an internal cache of UITableViewCell with the appropriate identifier and allows them to be reused when dequeueForCellWithReuseIdentifier is called. As a result, this increases performance of UITableView since a new view does not have to be created for a cell.
-
-#### What is Auto Layout?
-
-Auto Layout is used to dynamically calculate the size and position of views based on constraints.
 
 # Algorithm Resources
 
 #### [swift-algorithm-club](https://github.com/raywenderlich/swift-algorithm-club): Algorithm and data structures in Swift
-
-# Contributing
-
-#### There's a typo / an incorrect answer to one of your questions
-
-Great! Creating an issue will let me know what changes should be made. You can even making the changes yourself and make a pull request which will expedite the process!
-
-#### Requesting questions to be answered and topics
-
-If you open an issue, I would be happy to go ahead and add the question with the appropriate answer when I get to it!
-
-# Thank You
-
-#### Contributors
-
-- onthecodePath
-- Sergtsaeb
-
-
-
-
-
-
-
 
 
