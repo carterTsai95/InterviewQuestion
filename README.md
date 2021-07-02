@@ -22,7 +22,7 @@ This idea come out when I start to prepare my iOS interview question. In this op
 - [Debugging & Optimization](https://github.com/tsaihong1995/InterviewQuestion#debugging)
     - [How do you debug and profile code on iOS application?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-debug-and-profile-code-on-ios-application)
 	- [How do you optimize scrolling performance of dynamically sized table or collection views?](https://github.com/tsaihong1995/InterviewQuestion#how-do-you-optimize-scrolling-performance-of-dynamically-sized-table-or-collection-views)
-	- Explain your process for tracing and fixing memory leaks.
+	- [Explain your process for tracing and fixing memory leaks.](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#explain-your-process-for-tracing-and-fixing-memory-leaks)
 	- [You’ve just been alerted that your new app is prone to crashing. What do you do?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#youve-just-been-alerted-that-your-new-app-is-prone-to-crashing-what-do-you-do)
 	- How do you test your code? How do you make your code testable? (Todo)
 
@@ -412,6 +412,14 @@ We can use Grand Central Dispatch (GCD) to execute tasks concurrently. The main 
 The problem occur while we fetch big amount of the data. But we also can try to prefethching the oncoming data. For example, the view only present the data 1-10, meanwhile we let our program already fetch the next 11-20 and 21-30 items. Whenever the user scroll down, we continually fetching the oncoming data.
 
 ### Explain your process for tracing and fixing memory leaks.
+
+I will use the Memory Graph Debugger and try to find out which object causing the memory leak.
+
+Some step I will reaptly do:
+- Execute the core/main functionality of the application serveral times.
+- Take the memory snapshot and observe how many instance it exist for each object.
+- If I found out there has instance shouldn't existing in the memory anymore, it might be the object which causing the memory leak.
+- Try to track down it's parent node and analyze the code which lead the strong reference coming.
 
 ### You’ve just been alerted that your new app is prone to crashing. What do you do?
 
