@@ -8,12 +8,12 @@ This idea come out when I start to prepare my iOS interview question. In this op
 
 - [Swift Fundemantal Knowledge](https://github.com/tsaihong1995/InterviewQuestion#swift-fundemantal-knowledge)
 
-    - What are struct and class in iOS? What is the difference? When would you use each?
-    - What is framework in iOS?
-    - How can you store information within your iOS app?
-    - How do you cast between types?
-    - What is the difference between var and let?
-    - What is the difference between implicit and explicit?
+    - [What are struct and class in iOS? What is the difference? When would you use each?](https://github.com/tsaihong1995/InterviewQuestion#what-are-struct-and-class-in-ios-what-is-the-difference-when-would-you-use-each)
+    - [What is framework in iOS? & What iOS frameworks do you have experience working with?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-framework-in-ios)
+    - [How can you store information within your iOS app?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#how-can-you-store-information-within-your-ios-app)
+    - [How do you cast between types?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#how-do-you-cast-between-types)
+    - [What is the difference between var and let?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-the-difference-between-var-and-let)
+    - [What is the difference between implicit and explicit?](https://github.com/tsaihong1995/InterviewQuestion/blob/main/README.md#what-is-the-difference-between-implicit-and-explicit)
     - [Tell me about enum in Swift language. Can you give useful examples of enum associated values?](https://github.com/tsaihong1995/InterviewQuestion#tell-me-about-enum-in-swift-language-can-you-give-useful-examples-of-enum-associated-values)
     - [What is Core Data?](https://github.com/tsaihong1995/InterviewQuestion#what-is-core-data)
     - [When would you use Core Data over NSUserDefault?](https://github.com/tsaihong1995/InterviewQuestion#when-would-you-use-core-data-over-nsuserdefault)
@@ -260,7 +260,7 @@ The **let** keyword defines a constant which means the property that we don't wa
 
 The **var** defines a variable which can let us to modify it's value.
 
-#### What is the difference between implicit and explicit?
+### What is the difference between implicit and explicit?
 
 When referring to something as implicit or explicit, it is often referring to how an object is declared. In the two examples below:
 
@@ -275,7 +275,7 @@ var name = "onthecodepath" // implicit
 
 In the first line above, the name variable is *explicitly* declared since the type of the variable follows the name of the variable. In the second line, the String type is not explicitly declared. However, Swift is able to infer that name is of a String type since the value that it is being set as is of a String type.
 
-#### Tell me about enum in Swift language. Can you give useful examples of enum associated values?
+### Tell me about enum in Swift language. Can you give useful examples of enum associated values?
 
 An enumeration (enum) is value type in a type-safe way. It is not mandotary to provide the initial value for the enumeration.
 
@@ -390,7 +390,7 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-#### What is Core Data?
+### What is Core Data?
 
 Core Data is a framework that is used to manage model layer objects (Like the M in MVC). It has the ability to persist object graphs to a persistent store. Data is organized into relational entity-attribute model.
 
@@ -400,7 +400,7 @@ Core Data is a framework that is used to manage model layer objects (Like the M 
 - Core Data is used to store a large amount of data.
 
 
-#### What is NSFetchRequest?
+### What is NSFetchRequest?
 
 NSFetchRequest is the class responsible for fetching from Core Data. Fetch requests can be used to fetch a set of objects meeting a certain criteria, individual values and more. ([source](https://medium.com/ios-os-x-development/50-ios-interview-questions-and-answers-part-2-45f952230b9f))
 
@@ -435,15 +435,15 @@ The problem occur while we fetch big amount of the data. But we also can try to 
 
 ## Design Patterns
 
-#### What is Singleton Pattern?
+### What is Singleton Pattern?
 
 The Singleton design pattern ensures that only one instance exists for a given class and that there’s a global access point to that instance. It usually uses lazy loading to create the single instance when it’s needed the first time. ([source](https://medium.com/ios-os-x-development/ios-interview-questions-13840247a57a))
 
-#### What is the delegation pattern? 
+### What is the delegation pattern? 
 
 The delegation pattern is a powerful pattern used in building iOS applications. The basic idea is that one object will act on another object's behalf or in coordination with another object. The delegating object typically keeps a reference to the other object (delegate) and sends a message to it at the appropriate time. It is important to note that they have a one to one relationship.
 
-#### What is MVC?
+### What is MVC?
 
 MVC stands for **Model-View-Controller**. It is a software architecture pattern for implementing user interfaces. 
 
@@ -452,7 +452,7 @@ MVC consists of three layers: the model, the view, and the controller.
 - The **view layer** is typically where all the UI interface lies. Things like displaying buttons and numbers belong in the view layer. The view layer does not know anything about the model layer and vice versa.
 - The **controller (view controller)** is the layer that integrates the view layer and the model layer together. 
 
-#### What is MVVM?
+### What is MVVM?
 
 MVVM stands for **Model-View-ViewModel**. It is a software architecture pattern for implementing user interfaces.
 
