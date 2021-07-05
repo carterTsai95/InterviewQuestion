@@ -439,7 +439,7 @@ There are some steps that I will attemp.
 
 The Singleton design pattern ensures that only one instance exists for a given class and that there’s a global access point to that instance. It usually uses lazy loading to create the single instance when it’s needed the first time. ([source](https://medium.com/ios-os-x-development/ios-interview-questions-13840247a57a))
 
-### What is the delegation pattern? How would you explain delegates to a new Swift developer? 
+### What is the delegation pattern? 
 
 The delegation pattern is a powerful pattern used in building iOS applications. The basic idea is like the *delegate* the mission/task to the worker. One object will act on another object's behalf or in coordination with another object.
 
